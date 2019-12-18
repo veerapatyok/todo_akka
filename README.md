@@ -15,7 +15,11 @@ json format
 }
 ```
 
+return `200`
+
 ### GET
 get all todo task
 
 `path` = `/todos`
+
+return list of todo task
