@@ -5,6 +5,10 @@ import model.DatabaseProfile
 import repository.TodoRepo
 
 class TodoService(val todoRepo: TodoRepo) {
+  def createTable(h2DatabaseProfile: DatabaseProfile) = {
+    h2DatabaseProfile.db.db.run(todoRepo.createTable)
+  }
+
   def getAllTodo(h2DatabaseProfile: DatabaseProfile) = {
     h2DatabaseProfile.db.db.run(todoRepo.getAll)
   }

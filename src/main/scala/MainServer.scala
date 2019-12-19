@@ -16,12 +16,12 @@ object MainServer extends LazyLogging {
   def main(args: Array[String]): Unit = {
     val shut = CoordinatedShutdown(system)
     val dbProfile = new DatabaseProfile
-    val todoTable = new TodoTable(dbProfile.db)
+    val todoTable = new TodoTable(dbProfile)
     val todoRepo = new TodoRepo(todoTable)
     val todoService = new TodoService(todoRepo)
 
     (for {
-      _ <- todoRepo.createTable
+      _ <- todoService.createTable(dbProfile)
       bind <- Http().bindAndHandle(new TodoRoute(todoService, dbProfile).route, "0.0.0.0", 8080)
     } yield (bind, shut)).foreach { case (binding, shutdown) =>
       logger.info("start server")

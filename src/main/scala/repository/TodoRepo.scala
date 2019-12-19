@@ -4,10 +4,10 @@ import message.todo.Todo
 import model.TodoTable
 
 class TodoRepo(val todoTable: TodoTable) {
-  import todoTable.db.profile.api._
+  import todoTable.db.db.profile.api._
 
   def createTable = {
-    todoTable.db.db.run(todoTable.todos.schema.createIfNotExists)
+    todoTable.todos.schema.createIfNotExists
   }
 
   def insert(data: Todo) = {
