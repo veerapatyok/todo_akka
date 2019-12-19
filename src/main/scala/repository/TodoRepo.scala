@@ -3,7 +3,7 @@ package repository
 import message.todo.Todo
 import model.TodoTable
 
-class TodoRepo(todoTable: TodoTable) {
+class TodoRepo(val todoTable: TodoTable) {
   import todoTable.db.profile.api._
 
   def createTable = {

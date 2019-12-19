@@ -1,12 +1,10 @@
 package model
 
 import message.todo.{Pending, Status, Todo}
-import slick.basic.DatabaseConfig
-import slick.jdbc.JdbcProfile
 
-class TodoTable(val db: DatabaseConfig[JdbcProfile]) {
+class TodoTable(val db: DatabaseProfile) {
 
-  import db.profile.api._
+  import db.db.profile.api._
 
   implicit val TodoTableColumnType = MappedColumnType.base[Status, String](
     status => Status.toString(status),

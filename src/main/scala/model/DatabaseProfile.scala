@@ -3,6 +3,6 @@ package model
 import slick.basic.DatabaseConfig
 import slick.jdbc.JdbcProfile
 
-object H2Profile {
+class DatabaseProfile {
   val db = DatabaseConfig.forConfig[JdbcProfile]("h2mem1")
 }
