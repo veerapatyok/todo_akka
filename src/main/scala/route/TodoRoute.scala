@@ -2,11 +2,11 @@ package route
 
 import akka.http.scaladsl.server.Directives._
 import de.heikoseeberger.akkahttpcirce.FailFastCirceSupport._
-import model.h2.{H2Profile, TodoTable}
 import io.circe.generic.auto._
-import model.todo.TodoPost
-import model.todo.TodoPostJson
-import model.todo.TodoPostJson._
+import model.{H2Profile, TodoTable}
+import message.todo.TodoPost
+import message.todo.TodoPostJson
+import message.todo.TodoPostJson._
 
 import scala.util.{Failure, Success}
 
@@ -14,7 +14,7 @@ class TodoRoute(todoTable: TodoTable) {
   val route = {
     path("todos") {
       get {
-        import model.todo.TodoJson._
+        import message.todo.TodoJson._
 
         onComplete(H2Profile.db.db.run(todoTable.getAll)) {
           case Success(v) => complete(v)

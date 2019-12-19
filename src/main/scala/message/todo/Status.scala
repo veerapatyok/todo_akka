@@ -1,4 +1,4 @@
-package model.todo
+package message.todo
 
 sealed trait Status
 case object Pending extends Status

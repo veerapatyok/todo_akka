@@ -1,4 +1,4 @@
-package model.todo
+package message.todo
 
 import io.circe.{Encoder, Json}
 

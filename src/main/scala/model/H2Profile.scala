@@ -1,4 +1,4 @@
-package model.h2
+package model
 
 import slick.basic.DatabaseConfig
 import slick.jdbc.JdbcProfile

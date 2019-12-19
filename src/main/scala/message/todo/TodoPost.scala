@@ -1,4 +1,4 @@
-package model.todo
+package message.todo
 
 import io.circe.Decoder.Result
 import io.circe.{Decoder, DecodingFailure, Encoder, HCursor, Json}

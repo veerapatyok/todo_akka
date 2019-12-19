@@ -2,9 +2,8 @@ import akka.Done
 import akka.actor.{ActorSystem, CoordinatedShutdown}
 import akka.http.scaladsl.Http
 import com.typesafe.scalalogging.LazyLogging
-import akka.http.scaladsl.server.Directives._
-import model.h2.{H2Profile, TodoTable}
-import route.{Hello, TodoRoute}
+import model.{H2Profile, TodoTable}
+import route.TodoRoute
 
 import scala.concurrent.duration._
 
@@ -18,7 +17,7 @@ object MainServer extends LazyLogging {
 
     (for {
       _ <- todoTable.createTable
-      bind <- Http().bindAndHandle(Hello.route ~ new TodoRoute(todoTable).route, "0.0.0.0", 8080)
+      bind <- Http().bindAndHandle(new TodoRoute(todoTable).route, "0.0.0.0", 8080)
     } yield (bind, shut)).foreach { case (binding, shutdown) =>
       logger.info("start server")
 

@@ -1,6 +1,6 @@
-package model.h2
+package model
 
-import model.todo.{Pending, Status, Todo}
+import message.todo.{Pending, Status, Todo}
 import slick.basic.DatabaseConfig
 import slick.jdbc.JdbcProfile
 
