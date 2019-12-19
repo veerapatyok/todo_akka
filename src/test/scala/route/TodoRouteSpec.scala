@@ -50,7 +50,7 @@ class TodoRouteSpec extends AsyncFlatSpec
   "/todos with GET" should "get all task" in {
     Given("nothing")
     
-    When("call todos path with POST")
+    When("call todos path with GET")
     Get("/todos") ~> todoRoute.route ~> check {
       Then("return ok")
       response.status should be(StatusCodes.OK)
