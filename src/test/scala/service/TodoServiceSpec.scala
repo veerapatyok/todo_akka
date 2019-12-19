@@ -18,6 +18,8 @@ class TodoServiceSpec extends AsyncFlatSpec with GivenWhenThen with BeforeAndAft
 
   override def beforeAll(): Unit = Await.result(todoService.createTable(dbProfile), 5 seconds)
 
+  override def afterAll(): Unit = dbProfile.db.db.close()
+
   "todo service" should "insert data" in {
     Given("make fake data")
     val fakeTodo = Todo(0, "test", Done)
