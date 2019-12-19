@@ -3,6 +3,7 @@ import akka.actor.{ActorSystem, CoordinatedShutdown}
 import akka.http.scaladsl.Http
 import com.typesafe.scalalogging.LazyLogging
 import model.{H2Profile, TodoTable}
+import repository.TodoRepo
 import route.TodoRoute
 
 import scala.concurrent.duration._
@@ -14,10 +15,11 @@ object MainServer extends LazyLogging {
   def main(args: Array[String]): Unit = {
     val shut = CoordinatedShutdown(system)
     val todoTable = new TodoTable(H2Profile.db)
+    val todoRepo = new TodoRepo(todoTable)
 
     (for {
-      _ <- todoTable.createTable
-      bind <- Http().bindAndHandle(new TodoRoute(todoTable).route, "0.0.0.0", 8080)
+      _ <- todoRepo.createTable
+      bind <- Http().bindAndHandle(new TodoRoute(todoRepo).route, "0.0.0.0", 8080)
     } yield (bind, shut)).foreach { case (binding, shutdown) =>
       logger.info("start server")
 

@@ -22,16 +22,4 @@ class TodoTable(val db: DatabaseConfig[JdbcProfile]) {
   }
 
   val todos = TableQuery[TodoTable]
-
-  def createTable = {
-    db.db.run(todos.schema.createIfNotExists)
-  }
-
-  def insert(data: Todo) = {
-    todos += data
-  }
-
-  def getAll = {
-    todos.result
-  }
 }
