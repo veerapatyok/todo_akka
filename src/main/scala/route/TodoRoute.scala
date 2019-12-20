@@ -1,5 +1,7 @@
 package route
 
+import java.util.UUID
+
 import akka.http.scaladsl.server.Directives._
 import de.heikoseeberger.akkahttpcirce.FailFastCirceSupport._
 import io.circe.generic.auto._
@@ -24,7 +26,7 @@ class TodoRoute(todoService: TodoService,
         }
       } ~
         (post & entity(as[TodoPost])) { todo =>
-          onComplete(todoService.insert(TodoPostJson.toTodoModel(todo))(dbProfile)) {
+          onComplete(todoService.insert(TodoPostJson.toTodoModel(todo, UUID.randomUUID().toString))(dbProfile)) {
             case Success(value) => complete(value)
             case Failure(exception) => complete(500, exception.getMessage)
           }

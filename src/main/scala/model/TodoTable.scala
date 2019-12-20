@@ -12,7 +12,7 @@ class TodoTable(val db: DatabaseProfile) {
   )
 
   class TodoTable(tag: Tag) extends Table[Todo](tag, "TODO") {
-    def id = column[Int]("ID", O.PrimaryKey, O.AutoInc)
+    def id = column[String]("ID", O.PrimaryKey)
     def task = column[String]("TASK")
     def status = column[Status]("STATUS")
 

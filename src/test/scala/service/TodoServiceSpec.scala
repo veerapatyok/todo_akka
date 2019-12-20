@@ -22,7 +22,7 @@ class TodoServiceSpec extends AsyncFlatSpec with GivenWhenThen with BeforeAndAft
 
   "todo service" should "insert data" in {
     Given("make fake data")
-    val fakeTodo = Todo(0, "test", Done)
+    val fakeTodo = Todo("id", "test", Done)
 
     When("call insert")
     val result = todoService.insert(fakeTodo)(dbProfile)
@@ -33,7 +33,7 @@ class TodoServiceSpec extends AsyncFlatSpec with GivenWhenThen with BeforeAndAft
 
   "todo service" should "get all data" in {
     Given("make fake data")
-    val fakeTodo = Todo(0, "test", Done)
+    val fakeTodo = Todo("id", "test", Done)
 
     When("call insert and call get all")
     val result = for {

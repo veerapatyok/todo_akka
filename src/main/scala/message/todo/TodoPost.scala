@@ -1,5 +1,7 @@
 package message.todo
 
+import java.util.UUID
+
 import io.circe.Decoder.Result
 import io.circe.{Decoder, DecodingFailure, Encoder, HCursor, Json}
 
@@ -7,8 +9,8 @@ case class TodoPost(task: String,
                     status: Status)
 
 object TodoPostJson {
-  def toTodoModel(data: TodoPost) = {
-    Todo(0, data.task, data.status)
+  def toTodoModel(data: TodoPost, uuid: String) = {
+    Todo(uuid, data.task, data.status)
   }
 
   implicit val encodeTodo = new Encoder[TodoPost] {

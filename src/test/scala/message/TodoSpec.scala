@@ -11,7 +11,7 @@ class TodoSpec extends AsyncFlatSpec with GivenWhenThen with BeforeAndAfterAll {
     import message.todo.TodoJson._
 
     Given("mock data")
-    val fakeTodo = Todo(1, "test", Done)
+    val fakeTodo = Todo("id", "test", Done)
 
     When("encode to json")
     val result = fakeTodo.asJson
