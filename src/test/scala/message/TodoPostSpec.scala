@@ -28,7 +28,7 @@ class TodoPostSpec extends AsyncFlatSpec with GivenWhenThen with BeforeAndAfterA
     val fakeTodo =
       """
         |{
-        | "task": "test"
+        | "task": "test",
         | "status": "done"
         |}
         |""".stripMargin
@@ -37,6 +37,7 @@ class TodoPostSpec extends AsyncFlatSpec with GivenWhenThen with BeforeAndAfterA
     val result = decode[TodoPost](fakeTodo)
 
     Then("data should decode and return status")
+    println(result)
     assert(result.isRight)
   }
 }

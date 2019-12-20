@@ -28,3 +28,5 @@ libraryDependencies ++= Seq(
   "com.h2database" % "h2" % "1.4.197",
   "org.postgresql" % "postgresql" % "42.2.9"
 )
+
+parallelExecution in Test := false
